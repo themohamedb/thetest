@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { FormEvent, useState } from "react";
 
 export default function Home() {
@@ -11,74 +12,55 @@ export default function Home() {
   }
 
   return (
-    <div className="page-shell">
-      <header className="site-header">
-        <a className="brand" href="#top" aria-label="thetest home">
-          thetest
-        </a>
-        <p className="eyebrow">Private build / 01</p>
-        <div className="status">
-          <span className="pulse" aria-hidden="true" />
-          System online
-        </div>
-      </header>
+    <main className="landing-page">
+      <div className="frame" aria-hidden="true" />
 
-      <main id="top" className="main-grid">
-        <section className="hero" aria-labelledby="hero-title">
-          <p className="index">[ 00—01 ] / Incoming transmission</p>
-          <h1 id="hero-title">
-            Something thoughtful
-            <br />
-            is taking shape.
-          </h1>
-        </section>
+      <section className="content-column" aria-labelledby="hero-title">
+        <p className="coming-soon"><span aria-hidden="true" />Coming soon</p>
 
-        <aside className="signup-panel" aria-labelledby="early-access-title">
-          <p id="early-access-title" className="section-label">
-            // Early access
-          </p>
-          <p className="intro">
-            A new digital experience is on the way. Join the list and be first
-            to know.
-          </p>
+        <h1 id="hero-title">
+          <span>Something</span>
+          <span>thoughtful is</span>
+          <span className="blue">taking</span>
+          <span className="blue underline">shape.</span>
+        </h1>
 
-          <form className="signup-form" onSubmit={handleSubmit}>
-            <label className="sr-only" htmlFor="email">
-              Email address
-            </label>
-            <input
-              id="email"
-              type="email"
-              required
-              disabled={submitted}
-              autoComplete="email"
-              placeholder="EMAIL@ADDRESS.COM"
-            />
-            <button className={submitted ? "is-submitted" : ""} type="submit">
-              {submitted ? "Added ✓" : "Notify me"}
-            </button>
-          </form>
-          <p className="form-message" aria-live="polite">
-            {submitted ? "You’re on the list. We’ll be in touch." : ""}
-          </p>
+        <p className="intro-copy">
+          A new digital experience is
+          <br />
+          on the way. Join the list and
+          <br />
+          be first to know.
+        </p>
 
-          <div className="progress-block" aria-label="Launch sequence: 68% complete">
-            <div className="progress-head">
-              <span>Launch sequence</span>
-              <span>68%</span>
-            </div>
-            <div className="progress-track" aria-hidden="true">
-              <span />
-            </div>
-          </div>
-        </aside>
-      </main>
+        <form className="notify-form" onSubmit={handleSubmit}>
+          <label className="sr-only" htmlFor="email">Email address</label>
+          <input
+            id="email"
+            type="email"
+            required
+            disabled={submitted}
+            autoComplete="email"
+            placeholder="you@example.com"
+          />
+          <button type="submit" className={submitted ? "success" : ""}>
+            {submitted ? "You’re in!" : "Notify me"}
+          </button>
+        </form>
+        <p className="form-status" aria-live="polite">
+          {submitted ? "Thanks — we’ll let you know when we launch." : ""}
+        </p>
+      </section>
 
-      <footer className="site-footer">
-        <span>© 2026 thetest</span>
-        <span>UTC +03:00</span>
-        <span>Built with intent</span>
-      </footer>
-    </div>
+      <div className="art-column" aria-hidden="true">
+        <Image
+          src="/assets/taking-shape-hero.png"
+          alt=""
+          width={1254}
+          height={1254}
+          priority
+        />
+      </div>
+    </main>
   );
 }
